@@ -603,3 +603,76 @@ button {
         font-size: 120px;
     }
 }
+
+/* --- TAMBAHAN STYLE UNTUK FITUR BARU --- */
+
+.content-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+/* Table Styling */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.data-table th, .data-table td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 14px;
+}
+
+.data-table th {
+    color: #6B7280;
+    font-weight: 600;
+    background: #F9FAFB;
+}
+
+.data-table tr:hover {
+    background: #f5f6fa;
+}
+
+/* Form Grid for Transaction */
+.form-grid {
+    display: grid;
+    gap: 15px;
+}
+
+/* Notification Item */
+.alert-item {
+    transition: transform 0.2s;
+}
+.alert-item:hover {
+    transform: translateX(5px);
+}
+
+/* Simple Chart Container */
+.simple-chart {
+    background: #f8fafc;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed #cbd5e1;
+}
+
+/* Notif Badge in Sidebar */
+.notif-badge {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
