@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Kita - Manajemen Uang Kas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <div class="logo-text">
+                <div class="logo-main"><span class="logo-icon">Kelola</span> Kita</div>
+                <div class="logo-sub">Manajemen Uang Kas</div>
+            </div>
+        </div>
+
+        <div class="warning-box">
+            ⚠️ Data yang tampil saat ini adalah data dummy. Setelah Anda siap, klik di sini untuk mengosongkan data kas.
+        </div>
+
+        <div class="menu">
+            <div class="menu-item active" onclick="showPage('welcome')">
+                🏠 <span>Beranda</span>
+            </div>
+            <div class="menu-item" onclick="showPage('dashboard')">
+                💼 <span>Ringkasan Kas</span>
+            </div>
+            <div class="menu-item">
+                📝 <span>Catat Transaksi</span>
+            </div>
+            <div class="menu-item">
+                📊 <span>Monitor & Analisis</span>
+            </div>
+            <div class="menu-item">
+                🔔 <span>Notifikasi</span>
+            </div>
+            <div class="menu-item">
+                ⚙️ <span>Pengaturan</span>
+            </div>
+            <div class="menu-item">
+                ❓ <span>Bantuan</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="topbar">
+        <div class="topbar-left">
+            <div class="topbar-tab">
+                📝 <span>Catat transaksi</span>
+            </div>
+            <div class="topbar-tab">
+                📊 <span>Monitor & analisis</span>
+            </div>
+            <div class="topbar-tab">
+                🔔 <span>Terima notifikasi</span>
+            </div>
+        </div>
+        <div class="topbar-right">
+            <div class="company-name">UNIVERSITAS BRAWIJAYA</div>
+            <div class="icon-btn">🔔</div>
+            <div class="icon-btn">❓</div>
+            <div class="icon-btn">⚙️</div>
+            <div class="icon-btn">👤</div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div id="welcomePage" class="page active">
+            <div class="welcome-page">
+                <div class="welcome-card">
+                    <div class="welcome-illustration">
+                        <div class="floating-icon icon-chat">💬</div>
+                        <div class="floating-icon icon-heart">❤️</div>
+                        <div class="floating-icon icon-like">👍</div>
+                        <div class="illustration-people">
+                            <span>👩</span>
+                            <span>👨</span>
+                        </div>
+                    </div>
+                    
+                    <h1 class="welcome-title">Hallo Rifan,</h1>
+                    <p class="welcome-subtitle">
+                        Selamat datang di <strong>Kelola Kita</strong>!<br>
+                        Aplikasi khusus untuk mengelola <strong>uang kas</strong> secara rapi dan real-time.
+                    </p>
+
+                    <div class="feature-chips">
+                        <div class="chip">📝 Catat transaksi kas</div>
+                        <div class="chip">📊 Monitor & analisis arus kas</div>
+                        <div class="chip">🔔 Terima notifikasi penting</div>
+                    </div>
+                    
+                    <button class="btn-start" onclick="showPage('onboarding')">
+                        Mulai setup uang kas ≫
+                    </button>
+
+                    <div class="download-badges">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='135' height='40' viewBox='0 0 135 40'%3E%3Cg fill='none'%3E%3Crect width='135' height='40' fill='%23000' rx='5'/%3E%3Ctext x='50' y='25' fill='%23FFF' font-family='Arial' font-size='11' font-weight='bold'%3EGET IT ON%3C/text%3E%3Ctext x='50' y='32' fill='%23FFF' font-family='Arial' font-size='8'%3EGoogle Play%3C/text%3E%3C/g%3E%3C/svg%3E" alt="Google Play" class="badge-img">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='135' height='40' viewBox='0 0 135 40'%3E%3Cg fill='none'%3E%3Crect width='135' height='40' fill='%23000' rx='5'/%3E%3Ctext x='40' y='20' fill='%23FFF' font-family='Arial' font-size='8'%3EDownload on the%3C/text%3E%3Ctext x='40' y='32' fill='%23FFF' font-family='Arial' font-size='12' font-weight='bold'%3EApp Store%3C/text%3E%3C/g%3E%3C/svg%3E" alt="App Store" class="badge-img">
+                    </div>
+
+                    <div class="app-footer">
+                        © 2025 Kelola Kita v1.0.0 All rights reserved
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="onboardingPage" class="page">
+            <div class="onboarding-container">
+                <div class="onboarding-header">
+                    <div class="onboarding-title">Setup Kelola Kita</div>
+                    <p>Lengkapi informasi kas & bisnis Anda untuk memulai</p>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-line">
+                        <div class="progress-line-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-step">
+                        <div class="step-number active" id="step1">1</div>
+                        <div class="step-label">Informasi Bisnis</div>
+                    </div>
+                    <div class="progress-step">
+                        <div class="step-number" id="step2">2</div>
+                        <div class="step-label">Detail Perusahaan</div>
+                    </div>
+                    <div class="progress-step">
+                        <div class="step-number" id="step3">3</div>
+                        <div class="step-label">Preferensi Kas</div>
+                    </div>
+                    <div class="progress-step">
+                        <div class="step-number" id="step4">4</div>
+                        <div class="step-label">Selesai</div>
+                    </div>
+                </div>
+
+                <div class="onboarding-content">
+                    <div class="step-content active" id="content1">
+                        <h2>Informasi Bisnis Anda</h2>
+                        <p class="subtitle">Ceritakan tentang bisnis dan pengelolaan kas Anda</p>
+
+                        <div class="form-group">
+                            <label>Nama Bisnis / Unit Kas *</label>
+                            <input type="text" placeholder="Contoh: Kas BEM FILKOM" id="businessName">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Jenis Pengelolaan Kas *</label>
+                            <select id="industry">
+                                <option value="">Pilih jenis pengelolaan</option>
+                                <option value="organisasi">Organisasi / UKM / BEM</option>
+                                <option value="retail">Toko / Koperasi</option>
+                                <option value="kampus">Unit di Kampus</option>
+                                <option value="komunitas">Komunitas</option>
+                                <option value="other">Lainnya</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Jumlah Pengelola Kas</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" name="size" id="size1" value="solo">
+                                    <label for="size1" class="radio-label">1 orang</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="size" id="size2" value="small">
+                                    <label for="size2" class="radio-label">2-5 orang</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="size" id="size3" value="medium">
+                                    <label for="size3" class="radio-label">6-15 orang</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="size" id="size4" value="large">
+                                    <label for="size4" class="radio-label">15+ orang</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-content" id="content2">
+                        <h2>Detail Perusahaan / Organisasi</h2>
+                        <p class="subtitle">Lengkapi informasi dasar untuk kwitansi & laporan kas</p>
+
+                        <div class="form-group">
+                            <label>Email Penanggung Jawab *</label>
+                            <input type="email" placeholder="email@organisasi.com" id="email">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Nomor Telepon *</label>
+                            <input type="tel" placeholder="+62" id="phone">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Alamat (Opsional)</label>
+                            <input type="text" placeholder="Jalan, Kota, Provinsi" id="address">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Catatan Tambahan</label>
+                            <input type="text" placeholder="Contoh: Periode kepengurusan 2025" id="npwp">
+                        </div>
+                    </div>
+
+                    <div class="step-content" id="content3">
+                        <h2>Preferensi Uang Kas</h2>
+                        <p class="subtitle">Sesuaikan cara pencatatan kas dengan kebutuhan Anda</p>
+
+                        <div class="form-group">
+                            <label>Mata Uang Utama *</label>
+                            <select id="currency">
+                                <option value="IDR">IDR - Rupiah Indonesia</option>
+                                <option value="USD">USD - US Dollar</option>
+                                <option value="EUR">EUR - Euro</option>
+                                <option value="SGD">SGD - Singapore Dollar</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Bulan Awal Periode Kas</label>
+                            <select id="fiscalYear">
+                                <option value="1">Januari</option>
+                                <option value="2">Februari</option>
+                                <option value="3">Maret</option>
+                                <option value="4">April</option>
+                                <option value="5">Mei</option>
+                                <option value="6">Juni</option>
+                                <option value="7">Juli</option>
+                                <option value="8">Agustus</option>
+                                <option value="9">September</option>
+                                <option value="10">Oktober</option>
+                                <option value="11">November</option>
+                                <option value="12">Desember</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Jenis Pencatatan Kas</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" name="method" id="method1" value="detail" checked>
+                                    <label for="method1" class="radio-label">Detail per transaksi</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="method" id="method2" value="summary">
+                                    <label for="method2" class="radio-label">Rekap harian / mingguan</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-content" id="content4">
+                        <div style="text-align: center;">
+                            <div class="success-icon">✓</div>
+                            <h2>Setup Selesai!</h2>
+                            <p class="subtitle">Kelola Kita siap membantu mengelola uang kas Anda</p>
+                            <p style="color: #666; margin: 20px 0;">
+                                Anda dapat mulai <strong>mencatat transaksi kas</strong>, 
+                                <strong>memantau arus kas</strong>, dan 
+                                <strong>menerima notifikasi</strong> jika saldo mulai menipis atau ada transaksi penting.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn-back" id="backBtn" style="display: none;">Kembali</button>
+                        <button class="btn-next" id="nextBtn">Lanjutkan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="dashboardPage" class="page">
+            <h1 style="margin-bottom: 24px; color: #1F2937;">Dashboard Uang Kas</h1>
+            
+            <div class="dashboard-grid">
+                <div class="stat-card">
+                    <div class="stat-title">Saldo kas saat ini</div>
+                    <div class="stat-value">Rp 5.250.000</div>
+                    <div class="stat-change">+ Rp 750.000 dari bulan lalu</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-title">Transaksi bulan ini</div>
+                    <div class="stat-value">32 transaksi</div>
+                    <div class="stat-change">📥 18 pemasukan · 📤 14 pengeluaran</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-title">Notifikasi kas</div>
+                    <div class="stat-value">3 aktif</div>
+                    <div class="stat-change">2 pengingat kas menipis · 1 pengeluaran besar</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-title">Ringkasan arus kas</div>
+                    <div class="stat-value">+ Rp 1.200.000</div>
+                    <div class="stat-change">Surplus bulan berjalan</div>
+                </div>
+            </div>
+
+            <div class="app-footer">
+                © 2025 Kelola Kita - Manajemen Uang Kas
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi ganti halaman
+        function showPage(page) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(p => p.classList.remove('active'));
+
+            if (page === 'welcome') {
+                document.getElementById('welcomePage').classList.add('active');
+            } else if (page === 'onboarding') {
+                document.getElementById('onboardingPage').classList.add('active');
+            } else if (page === 'dashboard') {
+                document.getElementById('dashboardPage').classList.add('active');
+            }
+
+            // Update menu aktif di sidebar kalau perlu
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => item.classList.remove('active'));
+
+            if (page === 'welcome') {
+                menuItems[0].classList.add('active');
+            } else if (page === 'dashboard') {
+                menuItems[1].classList.add('active');
+            }
+        }
+
+        // Logic onboarding stepper
+        let currentStep = 1;
+        const totalSteps = 4;
+        const backBtn = document.getElementById('backBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const progressFill = document.getElementById('progressFill');
+
+        function updateSteps() {
+            // Tampilkan konten step
+            for (let i = 1; i <= totalSteps; i++) {
+                const content = document.getElementById('content' + i);
+                const stepNumber = document.getElementById('step' + i);
+
+                if (i === currentStep) {
+                    content.classList.add('active');
+                    stepNumber.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                    stepNumber.classList.remove('active');
+                }
+
+                if (i < currentStep) {
+                    stepNumber.classList.add('completed');
+                } else {
+                    stepNumber.classList.remove('completed');
+                }
+            }
+
+            // Progress bar
+            const progressPercent = ((currentStep - 1) / (totalSteps - 1)) * 100;
+            progressFill.style.width = progressPercent + '%';
+
+            // Tombol back
+            backBtn.style.display = currentStep === 1 ? 'none' : 'inline-block';
+
+            // Teks tombol next
+            if (currentStep === totalSteps) {
+                nextBtn.textContent = 'Masuk ke Dashboard';
+            } else {
+                nextBtn.textContent = 'Lanjutkan';
+            }
+        }
+
+        backBtn.addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                updateSteps();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateSteps();
+            } else {
+                // Selesai -> masuk dashboard
+                showPage('dashboard');
+            }
+        });
+
+        // Inisialisasi
+        updateSteps();
+    </script>
+</body>
+</html>
