@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     
-                    <h1 class="welcome-title">Hallo <span id="welcomeName">Rifan</span>,</h1>
+                    <h1 class="welcome-title">Hallo <span id="welcomeName"></span>,</h1>
                     <p class="welcome-subtitle">
                         Selamat datang di <strong>Kelola Kita</strong>!<br>
                         Aplikasi khusus untuk mengelola <strong>uang kas</strong> secara rapi dan real-time.
@@ -111,7 +111,7 @@
                         </div>
                         <div class="form-group">
                             <label>Nama Anda (Admin)</label>
-                            <input type="text" placeholder="Nama Panggilan" id="userNameInput" value="Rifan">
+                            <input type="text" placeholder="Nama Panggilan" id="userNameInput" >
                         </div>
                     </div>
 
@@ -634,49 +634,73 @@
         }
 
         // --- ANALYSIS PAGE LOGIC ---
+       // --- ANALYSIS PAGE LOGIC ---
         function renderAnalysis() {
             let income = 0;
             let expense = 0;
+            
+            // Hitung total
             appData.transactions.forEach(tx => {
                 if(tx.type === 'income') income += tx.amount;
                 else expense += tx.amount;
             });
 
+            // Update Text Angka
             document.getElementById('anaIncome').textContent = formatRupiah(income);
             document.getElementById('anaExpense').textContent = formatRupiah(expense);
 
-            const max = Math.max(income, expense) || 1;
+            // Logika Grafik
+            // Cari nilai tertinggi untuk dijadikan patokan 100%
+            const max = Math.max(income, expense) || 1; 
+            
+            // Hitung persentase tinggi bar
             const inPct = (income / max) * 100;
             const exPct = (expense / max) * 100;
 
+            // Render HTML Grafik yang Baru
             document.getElementById('chartContainer').innerHTML = `
-                <div style="display:flex; align-items:flex-end; height: 150px; gap: 50px; padding: 10px;">
-                    <div style="width: 100px; text-align: center;">
-                        <div style="height: ${inPct}%; background: #10B981; width: 100%; border-radius: 5px 5px 0 0; transition: height 1s;"></div>
-                        <div style="margin-top: 5px; font-size: 12px;">Pemasukan</div>
+                <div class="chart-column">
+                    <div class="chart-bar" 
+                         style="height: ${inPct}%; background: #10B981;" 
+                         data-value="${formatRupiah(income)}">
                     </div>
-                    <div style="width: 100px; text-align: center;">
-                        <div style="height: ${exPct}%; background: #EF4444; width: 100%; border-radius: 5px 5px 0 0; transition: height 1s;"></div>
-                        <div style="margin-top: 5px; font-size: 12px;">Pengeluaran</div>
+                    <div class="chart-label">Pemasukan</div>
+                </div>
+
+                <div class="chart-column">
+                    <div class="chart-bar" 
+                         style="height: ${exPct}%; background: #EF4444;"
+                         data-value="${formatRupiah(expense)}">
                     </div>
+                    <div class="chart-label">Pengeluaran</div>
                 </div>
             `;
 
+            // Render Tabel Riwayat (Sama seperti sebelumnya)
             const tbody = document.getElementById('fullHistoryTable');
             tbody.innerHTML = "";
-            appData.transactions.forEach((tx, index) => {
-                const row = `
-                    <tr>
-                        <td>${tx.date}</td>
-                        <td>${tx.type === 'income' ? '📥' : '📤'}</td>
-                        <td>${tx.category}</td>
-                        <td>${tx.desc}</td>
-                        <td>${formatRupiah(tx.amount)}</td>
-                        <td><button onclick="deleteTx(${index})" style="color:red; background:none; border:none; cursor:pointer;">Hapus</button></td>
-                    </tr>
-                `;
-                tbody.innerHTML += row;
-            });
+            
+            if (appData.transactions.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding: 20px;">Belum ada data transaksi.</td></tr>`;
+            } else {
+                appData.transactions.forEach((tx, index) => {
+                    const row = `
+                        <tr>
+                            <td>${tx.date}</td>
+                            <td>${tx.type === 'income' ? '📥' : '📤'}</td>
+                            <td>${tx.category}</td>
+                            <td>${tx.desc}</td>
+                            <td style="font-weight:bold; color: ${tx.type === 'income' ? '#10B981' : '#EF4444'}">
+                                ${formatRupiah(tx.amount)}
+                            </td>
+                            <td>
+                                <button onclick="deleteTx(${index})" style="color:red; background:none; border:none; cursor:pointer; font-weight:bold;">Hapus</button>
+                            </td>
+                        </tr>
+                    `;
+                    tbody.innerHTML += row;
+                });
+            }
         }
 
         function deleteTx(index) {

@@ -656,23 +656,56 @@ button {
     transform: translateX(5px);
 }
 
-/* Simple Chart Container */
 .simple-chart {
     background: #f8fafc;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border-radius: 12px;
     border: 1px dashed #cbd5e1;
+    /* PENTING: Harus ada tinggi tetap agar grafik % bisa muncul */
+    height: 250px; 
+    display: flex;
+    align-items: flex-end; /* Agar grafik tumbuh dari bawah */
+    justify-content: center; /* Posisi di tengah */
+    gap: 60px; /* Jarak antar batang */
+    padding-bottom: 30px; /* Jarak dari bawah */
+    box-sizing: border-box;
 }
 
-/* Notif Badge in Sidebar */
-.notif-badge {
-    animation: pulse 2s infinite;
+.chart-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    width: 80px;
+    height: 100%;
+    position: relative;
 }
 
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
+.chart-bar {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+    transition: height 1s ease-out;
+    min-height: 4px; /* Agar tetap terlihat sedikit jika nilai 0 */
+    position: relative;
+}
+
+/* Tooltip angka di atas grafik */
+.chart-bar:hover::after {
+    content: attr(data-value);
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1F2937;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.chart-label {
+    margin-top: 15px;
+    font-weight: 600;
+    color: #4B5563;
+    font-size: 14px;
 }
